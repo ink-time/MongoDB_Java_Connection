@@ -104,6 +104,7 @@ public class Alumno {
 
     // 2. BUSCAR POR NOMBRE
     public boolean findByName(String nombre) {
+        int count = 0;
         Document alumno = getCollection()
                 .find(Filters.eq("nombre", nombre))
                 .first();
