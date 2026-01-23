@@ -19,19 +19,29 @@ public class Alumno {
         String email = "";
         int edad = 0;
         boolean activo = true;
-        double saldo = 0;
+        Double saldo = 0.00;
         String telefono = "";
         String pais = "";
         while(cursor.hasNext()){
             Document doc = cursor.next();
             nombre = doc.getString("nombre");
+            System.out.println(doc.getString("nombre"));
             email = doc.getString("email");
             edad = doc.getInteger("edad");
             activo = doc.getBoolean("activo");
+//            if(())
+            System.out.println(doc.getDouble("saldo").getClass().getSimpleName());
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
             saldo = doc.getDouble("saldo");
             telefono = doc.getString("telefono");
             pais = doc.getString("pais");
-            if (findByName(nombre)) return;
+            if (!findByName(nombre)){
+
+
             Document insertDoc = new Document("nombre", nombre)
                     .append("email", email)
                     .append("edad", edad)
@@ -45,23 +55,50 @@ public class Alumno {
             System.out.println("Alumno insertado: " + nombre);
             System.out.println();
             System.out.println();
+            }
         }
 
         listarAlumnos();
     }
     // 1. LISTAR ALUMNOS
     public void listarAlumnos() {
+        MongoCursor<Document> cursorUsers = getUsuariosCollection().find().iterator();
         MongoCursor<Document> cursor = getCollection().find().iterator();
 
         System.out.println("Listado de alumnos:");
         while (cursor.hasNext()) {
             Document doc = cursor.next();
-            System.out.println(
-                    doc.getString("nombre") + " " +
-                            doc.getString("apellido1") + " " +
-                            doc.getString("apellido2") + " " +
-                            doc.getInteger("edad") + " "
-            );
+//            boolean condition = false;
+//            while(cursorUsers.hasNext() && !condition){
+//                if(cursorUsers.next().getString("nombre") != null){
+//                    if(cursorUsers.next().getString("nombre").equals(doc.getString("nombre"))){
+//                        condition = true;
+//                        break;
+//
+//                    }
+//                }
+//
+//            }
+            if(doc.containsKey("telefono")&&doc.containsKey("pais")){
+                System.out.println(
+                        doc.getString("nombre") + " " +
+                                doc.getString("email") + " " +
+                                doc.getInteger("edad") + " " +
+                                doc.getBoolean("activo") + " " +
+                                doc.getDouble("saldo") + " " +
+                                doc.getString("telefono") + " " +
+                                doc.getString("pais")
+                );
+            }else{
+                System.out.println(
+                        doc.getString("nombre") + " " +
+                                doc.getString("apellido1") + " " +
+                                doc.getString("apellido2") + " " +
+                                doc.getInteger("edad") + " "
+                );
+            }
+            System.out.println();
+
         }
     }
 
