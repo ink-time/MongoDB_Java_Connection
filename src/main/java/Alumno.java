@@ -29,8 +29,7 @@ public class Alumno {
             email = doc.getString("email");
             edad = doc.getInteger("edad");
             activo = doc.getBoolean("activo");
-//            if(())
-            System.out.println(doc.getDouble("saldo").getClass().getSimpleName());
+//            System.out.println(doc.getDouble("saldo").getClass().getSimpleName()); // Testing/Logging
 //            try {
 //                Thread.sleep(5000);
 //            } catch (InterruptedException e) {

@@ -13,6 +13,7 @@ public class Main {
         // Insertar Alumno
         alumno.insertAlumno("ana", "Vázquez", "Guerrero", 25);
         alumno.insertUsuariosToAlumnos();
+        LeerAlumnoJson.leer_insertarJsonFile("json_files/alumnos.json");
         // Actualizar Alumno
 //        alumno.actualizarAlumno("Mónica", "Mónica", "Blásquez", "Güera", 20);
 //        // Borrar Alumno
